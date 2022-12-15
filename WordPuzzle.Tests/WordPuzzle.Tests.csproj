@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PackerTracker\PackerTracker.csproj" />  
+    <ProjectReference Include="..\WordPuzzle\WordPuzzle.csproj" />  
   </ItemGroup>
 
 </Project>
