@@ -1,0 +1,24 @@
+{
+  "name": "word-puzzle.solution",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tw-build": "tailwindcss -i ./WordPuzzle/wwwroot/css/input.css -o ./WordPuzzle/wwwroot/css/output.css",
+    "tw-watch": "tailwindcss -i ./WordPuzzle/wwwroot/css/input.css -o ./WordPuzzle/wwwroot/css/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noh24/Word-Puzzle.Solution.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noh24/Word-Puzzle.Solution/issues"
+  },
+  "homepage": "https://github.com/noh24/Word-Puzzle.Solution#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}
