@@ -7,18 +7,22 @@ namespace WordPuzzle.Models
   public class Game
   {
     public string Word { get; set; }
+    public string[] Words = new string[] { "cluck", "yourmother", "dinosaur", "stranger", "danger", "request", "file", "brian", "tin", "helmet", "guitar" };
     public char[] GuessedLetters { get; set; }
     public int GuessesLeft { get; set; }
     public int LettersLeft { get; set; }
     public List<char> AllLettersGuessed { get; set; }
+    public static Game MyGame { get; set; }
 
-    public Game(string word)
+    public Game()
     {
-      Word = word;
-      GuessedLetters = new char[word.Length];
-      GuessesLeft = 6;
-      LettersLeft = word.Length;
+      Random random = new Random();
+      Word = Words[random.Next(Words.Length - 1)];
+      GuessedLetters = new char[Word.Length];
+      GuessesLeft = Word.Length + 2;
+      LettersLeft = Word.Length;
       AllLettersGuessed = new List<char> { };
+      MyGame = this;
     }
     //replaces null indicies with "_" and returns GuessedLetters in string format 
     public string DisplayWord() //{null,null,null} = "___" {c,null,t} = "c_t
@@ -56,7 +60,7 @@ namespace WordPuzzle.Models
     {
       AllLettersGuessed.Add(letter);
     }
-    
+
     public int EndGame()
     {
       if (LettersLeft == 0)
@@ -68,6 +72,21 @@ namespace WordPuzzle.Models
         return 2;
       }
       return 0;
+    }
+    public void Guess(char guess)
+    {
+      guess = Char.ToLower(guess);
+      if (guess < 97 || guess > 122)
+      {
+        return;
+      }
+      if (EndGame() == 0 && !AllLettersGuessed.Contains(guess))
+      {
+        int letters = ReassignLetters(guess);
+        AddToAllGuessedLetters(guess);
+        GuessesLeft--;
+        LettersLeft -= letters;
+      }
     }
   }
 }

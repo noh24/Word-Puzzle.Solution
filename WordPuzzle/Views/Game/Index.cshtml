@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+<h2>@foreach (char ch in @Model.DisplayWord())
+  {
+    <span>@ch </span>
+  }
+</h2>
+<h3>Letters Guessed: 
+  @foreach (char ch in @Model.AllLettersGuessed)
+  {
+    <span>@ch</span>
+  }
+</h3>
+<h3>Letters Left: @Model.LettersLeft</h3>
+<h3>Guesses Left: @Model.GuessesLeft</h3>
+@if (@Model.EndGame() == 1)
+{
+  <h3>You won.</h3>
+}
+else if (@Model.EndGame() == 2)
+{
+  <h3>You lost.</h3>
+}
+else if (@Model.EndGame() == 0)
+{
+  <form action="/game" method="post">
+    <label for="guess">Enter a letter</label>
+    <input id="guess" name="guess" type="text" maxlength="1">
+    <button type="submit">Guess</button>
+  </form>
+}
